@@ -31,7 +31,7 @@ header{display:flex;align-items:center;justify-content:space-between;border-bott
 .ratings{display:flex;flex-wrap:wrap;gap:18px;border-bottom:1px solid #222;padding:13px 0}.rating{min-width:0}.rating+.rating{border-left:1px solid #333;padding-left:18px}.rname{font-weight:bold;color:#efb21e;font-size:10px;white-space:nowrap}.kp .rname{color:#ef603d}.score{font-size:24px;font-weight:bold;white-space:nowrap}
 .genres{display:flex;gap:5px;flex-wrap:wrap;margin:13px 0}.genre{background:#151515;border:1px solid #292929;color:#aaa;padding:5px 7px;border-radius:5px;font-size:9px}.desc,.why{color:#aaa;font-size:11px;line-height:1.6}.why{border:1px solid #292929;background:#090909;border-radius:8px;padding:12px;margin-top:14px}.why strong{display:block;color:#e13b50;margin-bottom:4px}
 .actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:0 26px 22px}.act{background:#0d0d0d;color:#aaa;border:1px solid #303030;border-radius:7px;padding:12px;font-size:9px;font-weight:bold}.act.red{background:#b9102b;color:#fff;border-color:#e62b44}
-.similar{border-top:1px solid #222;padding:16px 26px 22px}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.card{background:#0d0d0d;border:1px solid #252525;border-radius:7px;overflow:hidden;text-align:left}.card img{width:100%;aspect-ratio:2/3;object-fit:cover}.card div{padding:7px;font-size:9px;font-weight:bold}.card small{display:flex;justify-content:space-between;color:#666;margin-top:5px}
+.similar{border-top:1px solid #222;padding:16px 26px 22px}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.saved-grid{grid-template-columns:repeat(3,1fr)}.card{background:#0d0d0d;border:1px solid #252525;border-radius:7px;overflow:hidden;text-align:left}.card img{width:100%;aspect-ratio:2/3;object-fit:cover}.card div{padding:7px;font-size:9px;font-weight:bold}.card small{display:flex;justify-content:space-between;color:#666;margin-top:5px}
 .screen{display:none;margin-top:18px}.screen.active{display:block}.box{max-width:900px;margin:auto;background:#0b0b0b;border:1px solid #242424;border-radius:12px;padding:22px}.box h2{font-size:28px;margin:3px 0 6px}.sub{color:#777;font-size:10px;line-height:1.5;margin-bottom:18px}
 .form input,.form textarea,.form select{width:100%;background:#111;color:#ddd;border:1px solid #292929;border-radius:7px;padding:11px;margin-bottom:8px}.form textarea{min-height:100px}.form textarea.mono{font-family:monospace;font-size:10px;min-height:120px}
 .request{border:1px solid #292929;border-radius:8px;padding:13px;margin-top:9px}.request p{color:#999;font-size:10px;line-height:1.5}.badge{display:inline-block;background:#241016;color:#df5364;padding:4px 6px;border-radius:4px;font-size:8px;margin-right:4px}
@@ -39,7 +39,7 @@ header{display:flex;align-items:center;justify-content:space-between;border-bott
 .offerform{display:none;margin-top:10px}.offerform.active{display:block}
 .share{display:grid;grid-template-columns:130px 1fr;gap:14px;padding:14px;border:1px solid #2b2b2b;border-radius:9px;background:linear-gradient(135deg,#170b0e,#090909)}.share img{width:130px;aspect-ratio:2/3;object-fit:cover;border-radius:6px}.share h3{font-size:23px;margin:4px 0}.share p{font-size:10px;color:#999}
 .courier{display:flex;justify-content:space-between;border-bottom:1px solid #222;padding:12px 0}.level{font-size:9px;color:#df344c;margin-top:3px}
-.nav{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);width:min(720px,calc(100% - 18px));background:#090909ed;border:1px solid #292929;border-radius:11px;padding:5px;display:grid;grid-template-columns:repeat(5,1fr);z-index:5}.nav button{background:none;border:0;color:#666;padding:8px 3px;font-size:7px}.nav button b{display:block;font-size:15px;margin-bottom:2px}.nav button.active{background:#20080d;color:#fff}
+.nav{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);width:min(720px,calc(100% - 18px));background:#090909ed;border:1px solid #292929;border-radius:11px;padding:5px;display:grid;grid-template-columns:repeat(6,1fr);z-index:5}.nav button{background:none;border:0;color:#666;padding:8px 3px;font-size:7px}.nav button b{display:block;font-size:15px;margin-bottom:2px}.nav button.active{background:#20080d;color:#fff}
 .toast{position:fixed;top:14px;left:50%;transform:translateX(-50%);background:#1a0d10;border:1px solid #d71936;color:#f2c6cd;padding:10px 16px;border-radius:8px;font-size:11px;z-index:20;max-width:90%;text-align:center}
 .hint{color:#666;font-size:10px;line-height:1.5;margin-top:6px}
 .empty{color:#666;font-size:10px;padding:10px 0}
@@ -53,12 +53,22 @@ header{display:flex;align-items:center;justify-content:space-between;border-bott
 .pick.loading #pickIcon{display:inline-block;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes cardIn{0%{opacity:0;transform:translateY(16px) scale(.985)}100%{opacity:1;transform:translateY(0) scale(1)}}
-@keyframes posterIn{0%{opacity:0;transform:scale(.92) rotate(-1.5deg)}55%{opacity:1;transform:scale(1.02) rotate(.5deg)}100%{opacity:1;transform:scale(1) rotate(0)}}
 @keyframes chipIn{0%{opacity:0;transform:translateY(6px)}100%{opacity:1;transform:translateY(0)}}
 .movie.reveal{animation:cardIn .5s cubic-bezier(.22,1,.36,1)}
-.poster.reveal{animation:posterIn .55s cubic-bezier(.22,1,.36,1)}
 .genre{animation:chipIn .35s ease backwards}
 .genre:nth-child(2){animation-delay:.04s}.genre:nth-child(3){animation-delay:.08s}.genre:nth-child(4){animation-delay:.12s}.genre:nth-child(5){animation-delay:.16s}
+
+/* ---- lootbox reveal ---- */
+.poster-wrap{position:relative;border-radius:7px}
+.poster-wrap::before{content:"";position:absolute;inset:-16px;border-radius:18px;background:radial-gradient(circle,rgba(239,178,30,.65),rgba(215,25,54,.35) 45%,rgba(215,25,54,0) 72%);opacity:0;pointer-events:none;z-index:-1}
+.poster-wrap.burst::before{animation:glowBurst .8s cubic-bezier(.22,1,.36,1)}
+@keyframes glowBurst{0%{opacity:0;transform:scale(.55)}25%{opacity:1;transform:scale(1.25)}100%{opacity:0;transform:scale(1.55)}}
+.poster-wrap.loading .poster{animation:shuffle .45s ease-in-out infinite}
+@keyframes shuffle{0%,100%{filter:brightness(.5) blur(1.5px) saturate(1.3);transform:scale(1) rotate(0)}50%{filter:brightness(.85) blur(3px) saturate(1.6);transform:scale(1.015) rotate(.6deg)}}
+@keyframes posterPop{0%{opacity:0;transform:scale(.75) rotate(-4deg)}45%{opacity:1;transform:scale(1.08) rotate(2deg)}70%{transform:scale(.98) rotate(-.5deg)}100%{opacity:1;transform:scale(1) rotate(0)}}
+.poster-wrap.reveal .poster{animation:posterPop .6s cubic-bezier(.22,1,.36,1)}
+.spark{position:absolute;pointer-events:none;font-size:15px;left:50%;top:50%;opacity:0;animation:sparkFly .85s ease-out forwards;z-index:2}
+@keyframes sparkFly{0%{opacity:0;transform:translate(-50%,-50%) scale(.4) rotate(0deg)}15%{opacity:1}100%{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(1.15) rotate(var(--rot))}}
 @media(max-width:800px){.layout{grid-template-columns:1fr}.movie{grid-template-columns:210px 1fr}}
 @media(max-width:600px){
 .app{padding:10px 8px 84px}.channel{display:none}
@@ -87,7 +97,7 @@ h1{font-size:30px}.type{font-size:8px}.en{font-size:12px}
 
 <section id="home" class="screen active"><div class="layout">
 <aside class="panel filters">
-<div class="sec"><div class="label">ФОРМАТ</div><div class="choices" id="types"><button class="choice active" data-v="Фильм">Фильм</button><button class="choice" data-v="Сериал">Сериал</button><button class="choice" data-v="Все">Всё</button></div></div>
+<div class="sec"><div class="label">ФОРМАТ</div><div class="choices" id="types" style="grid-template-columns:repeat(2,1fr)"><button class="choice active" data-v="Фильм">Фильм</button><button class="choice" data-v="Сериал">Сериал</button><button class="choice" data-v="Мультфильм">Мультфильм</button><button class="choice" data-v="Все">Всё</button></div></div>
 <div class="sec"><div class="label">НАСТРОЕНИЕ</div><div class="moods" id="moods"><button class="mood active" data-v="Любое">Любое</button><button class="mood" data-v="Драйв">Драйв</button><button class="mood" data-v="Комедия">Комедия</button><button class="mood" data-v="Страшное">Страшное</button><button class="mood" data-v="Заставит подумать">Заставит подумать</button><button class="mood" data-v="Драма">Драма</button></div></div>
 <div class="sec"><div class="label">СТРАНА</div><select id="country"><option value="">Любая страна</option></select></div>
 <div class="sec"><div class="label">ДЕСЯТИЛЕТИЕ</div><select id="decade"><option value="">Любое</option></select></div>
@@ -96,7 +106,7 @@ h1{font-size:30px}.type{font-size:8px}.en{font-size:12px}
 </aside>
 
 <main class="panel"><div class="topline"><span>✦ ВЫБОР НА СЕГОДНЯ</span><b id="counter"></b></div>
-<article class="movie"><img id="poster" class="poster"><div><div class="type" id="type"></div><h1 id="title"></h1><div class="en" id="en"></div><div class="meta" id="meta"></div><div class="ratings" id="ratings"></div><div class="genres" id="genres"></div><div class="desc" id="desc"></div><div class="why"><strong>☆ Почему этот фильм?</strong><span id="why"></span></div></div></article>
+<article class="movie"><div class="poster-wrap" id="posterWrap"><img id="poster" class="poster"></div><div><div class="type" id="type"></div><h1 id="title"></h1><div class="en" id="en"></div><div class="meta" id="meta"></div><div class="ratings" id="ratings"></div><div class="genres" id="genres"></div><div class="desc" id="desc"></div><div class="why"><strong>☆ Почему этот фильм?</strong><span id="why"></span></div></div></article>
 <div class="actions"><button class="act red" id="again">⚄ ДРУГОЙ ВАРИАНТ</button><button class="act" id="save">♡ СОХРАНИТЬ</button><button class="act" id="togetherBtn">◉ ПОСМОТРЕТЬ ВМЕСТЕ</button></div>
 <section class="similar"><div class="label">ПОХОЖИЕ ВАРИАНТЫ</div><div class="cards" id="cards"></div></section></main></div></section>
 
@@ -108,16 +118,13 @@ h1{font-size:30px}.type{font-size:8px}.en{font-size:12px}
 
 <section id="couriers" class="screen"><div class="box"><div class="label">КИНО-КУРЬЕРЫ</div><h2>Лучшие рекомендации</h2><div class="sub">За удачные советы в разделе «Заявки» пользователи получают рейтинг и уровни.</div><div id="courierList" class="empty">Загрузка…</div></div></section>
 
-<section id="settings" class="screen"><div class="box"><div class="label">НАСТРОЙКИ</div><h2>Профиль, TMDB и общий доступ</h2><div class="sub">Имя нужно, чтобы твои заявки и советы были подписаны и учитывались в рейтинге курьеров.</div><div class="form"><input id="meName" placeholder="Твой ник как кино-курьера"><button class="pick" id="saveMe">СОХРАНИТЬ ИМЯ</button></div>
+<section id="saved" class="screen"><div class="box"><div class="label">СОХРАНЁННОЕ</div><h2>Твой список на потом</h2><div class="sub">Фильмы, которые ты отметил ♡ — хранятся в этом браузере, на этом устройстве.</div><div id="savedList" class="cards saved-grid"></div><div id="savedEmpty" class="empty" style="display:none">Пока пусто — жми ♡ СОХРАНИТЬ на понравившемся фильме.</div></div></section>
 
-<div class="sub" style="margin-top:20px" id="tmdbInfoLine">TMDB подключён централизованно через общий прокси — работает у всех, кто открывает сайт, без всякой настройки с их стороны. Поля ниже нужны только тебе как владельцу приложения — для отладки на своём устройстве, если решишь тестировать без прокси, напрямую своим ключом.<br><b style="color:#c94">Важно: живой TMDB и Firebase заработают только на настоящем сайте (после того как выложишь файл на хостинг) — здесь, внутри предпросмотра Claude, сеть наружу заблокирована по соображениям безопасности, это норма.</b></div>
-<div class="form"><input id="tmdbKey" placeholder="Ключ TMDB API (v3 auth)"><button class="pick" id="saveKey">СОХРАНИТЬ КЛЮЧ</button></div><div class="hint" id="keyStatus"></div>
-
-<div class="sub" style="margin-top:20px">Чтобы «Заявки» и «Кино-курьеры» были видны всем, а не только в этом браузере — создай бесплатный проект на firebase.google.com, включи Firestore Database и вставь сюда конфиг своего веб-приложения (Project settings → General → Your apps → SDK setup and configuration → объект firebaseConfig, целиком).</div><div class="form"><textarea id="fbConfig" class="mono" placeholder='{"apiKey":"...","authDomain":"...","projectId":"...", ...}'></textarea><button class="pick" id="saveFb">СОХРАНИТЬ FIREBASE</button></div><div class="hint" id="fbStatus"></div>
+<section id="settings" class="screen"><div class="box"><div class="label">НАСТРОЙКИ</div><h2>Профиль</h2><div class="sub">Введи ник — под ним будут сохраняться твои заявки, советы в рейтинге курьеров и список «Сохранённое», и они будут видны тебе на любом устройстве, где ты введёшь этот же ник.</div><div class="form"><input id="meName" placeholder="Твой ник"><button class="pick" id="saveMe">СОХРАНИТЬ ИМЯ</button></div><div class="hint" id="meStatus"></div>
 </div></section>
 </div>
 
-<nav class="nav"><button class="active" data-nav="home"><b>⚄</b>ПОДОБРАТЬ</button><button data-nav="together"><b>◉</b>ВМЕСТЕ</button><button data-nav="letter"><b>✉</b>КИНОПИСЬМО</button><button data-nav="requests"><b>☷</b>ЗАЯВКИ</button><button data-nav="couriers"><b>★</b>КУРЬЕРЫ</button></nav>
+<nav class="nav"><button class="active" data-nav="home"><b>⚄</b>ПОДОБРАТЬ</button><button data-nav="saved"><b>♡</b>МОЁ</button><button data-nav="together"><b>◉</b>ВМЕСТЕ</button><button data-nav="letter"><b>✉</b>ПИСЬМО</button><button data-nav="requests"><b>☷</b>ЗАЯВКИ</button><button data-nav="couriers"><b>★</b>КУРЬЕРЫ</button></nav>
 
 <script>
 const films=[
@@ -206,7 +213,16 @@ const MOOD_GENRE={"Драйв":{movie:28,tv:10759},"Комедия":{movie:35,tv
    на хостинг, друзьям вообще ничего настраивать не придётся.
 ===================================================================== */
 const TMDB_PROXY = "https://room-cinema-tmdb.792p2wkgrc.workers.dev"; // например: https://room-cinema-tmdb.твой-логин.workers.dev
-const FIREBASE_CONFIG = null; // вставь сюда объект firebaseConfig целиком, например: {apiKey:"...",authDomain:"...",projectId:"...", ...}
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyBolxk9p-aTNp-U3Ex9F_VqYR3mj4TcLdo",
+  authDomain: "roomcinemafilm5.firebaseapp.com",
+  databaseURL: "https://roomcinemafilm5-default-rtdb.firebaseio.com",
+  projectId: "roomcinemafilm5",
+  storageBucket: "roomcinemafilm5.firebasestorage.app",
+  messagingSenderId: "856867875255",
+  appId: "1:856867875255:web:40b174b52fe7abe6dc2032",
+  measurementId: "G-8MSSWEF2K9"
+};
 const TMDB_PROXY_READY = TMDB_PROXY && TMDB_PROXY.startsWith("http");
 
 /* ---------- helpers ---------- */
@@ -234,19 +250,18 @@ function lsSet(key,value){try{localStorage.setItem(key,JSON.stringify(value));re
 let me=lsGet("rc_me");
 function loadMe(){if(me&&me.name)$("#meName").value=me.name}
 
-/* ---------- Firebase (shared Заявки/Курьеры): hardcoded config first, personal localStorage as dev fallback ---------- */
+/* ---------- Firebase (shared Заявки/Курьеры/профили): hardcoded config only ---------- */
 let _db=undefined;
 function getDb(){
   if(_db!==undefined)return _db;
   try{
-    const cfg=FIREBASE_CONFIG||lsGet("rc_fbconfig");
-    if(!cfg||typeof firebase==="undefined"){_db=null;return null}
-    if(!firebase.apps.length)firebase.initializeApp(cfg);
+    if(!FIREBASE_CONFIG||typeof firebase==="undefined"){_db=null;return null}
+    if(!firebase.apps.length)firebase.initializeApp(FIREBASE_CONFIG);
     _db=firebase.firestore();
     return _db;
   }catch(e){_db=null;return null}
 }
-function fbConfigured(){return !!lsGet("rc_fbconfig")}
+function fbConfigured(){return !!FIREBASE_CONFIG}
 
 /* ---------- filters state ---------- */
 const MAX_TRIES=30;
@@ -266,7 +281,7 @@ function toCurrent(f){
     score:f.imdb};
 }
 
-function localPool(){return films.filter(f=>(type==="Все"||f.type===type)&&(!mood||mood==="Любое"||f.mood.includes(mood))&&(!$("#country").value||f.country===$("#country").value)&&(!$("#decade").value||f.decade===$("#decade").value)&&(!+$("#runtime").value||f.min<=+$("#runtime").value)&&(!$("#load").value||f.load===$("#load").value))}
+function localPool(){return films.filter(f=>((type==="Все")||(type==="Мультфильм"?/мультфильм|фэнтези|приключения/i.test(f.genres):f.type===type))&&(!mood||mood==="Любое"||f.mood.includes(mood))&&(!$("#country").value||f.country===$("#country").value)&&(!$("#decade").value||f.decade===$("#decade").value)&&(!+$("#runtime").value||f.min<=+$("#runtime").value)&&(!$("#load").value||f.load===$("#load").value))}
 
 function pickLocal(excludeTitle){
   let p=localPool();
@@ -291,7 +306,10 @@ async function tmdbDiscover(mt,key){
   if(decade){const[gte,lte]=decadeRange(decade);if(mt==="movie"){params.set("primary_release_date.gte",gte);params.set("primary_release_date.lte",lte)}else{params.set("first_air_date.gte",gte);params.set("first_air_date.lte",lte)}}
   const rt=+$("#runtime").value;
   if(rt&&mt==="movie")params.set("with_runtime.lte",String(rt));
-  if(mood&&mood!=="Любое"&&MOOD_GENRE[mood])params.set("with_genres",String(MOOD_GENRE[mood][mt]));
+  const genreIds=[];
+  if(type==="Мультфильм")genreIds.push(16);
+  if(mood&&mood!=="Любое"&&MOOD_GENRE[mood])genreIds.push(MOOD_GENRE[mood][mt]);
+  if(genreIds.length)params.set("with_genres",genreIds.join(","));
   const base=tbase+"/discover/"+mt+"?"+params.toString();
   const first=await fetch(base);
   if(!first.ok)throw new Error("discover failed");
@@ -349,13 +367,13 @@ async function pickViaTmdb(key){
 /* ---------- main pick ---------- */
 async function pick(){
   if(tries<=0){toast("Лимит в "+MAX_TRIES+" подборов на сессию исчерпан — обнови страницу, чтобы начать заново.");return}
-  const keyObj=lsGet("rc_tmdbkey");
-  const hasKey=TMDB_PROXY_READY||!!(keyObj&&keyObj.key);
+  const hasKey=TMDB_PROXY_READY;
   $("#pick").disabled=true;$("#pick").classList.add("loading");
+  const pw=$("#posterWrap");if(pw)pw.classList.add("loading");
   try{
     if(hasKey){
       try{
-        const r=await pickViaTmdb(TMDB_PROXY_READY?null:keyObj.key);
+        const r=await pickViaTmdb(null);
         if(r){current=r;tries--;$("#tries").textContent=tries;render();return}
         toast("TMDB не нашёл вариантов по этим фильтрам — попробуй ослабить пару условий.");
       }catch(e){toast("TMDB сейчас недоступен (или файл ещё открыт внутри Claude, а не на своём хостинге).")}
@@ -365,13 +383,28 @@ async function pick(){
     if(!f){toast("По этим фильтрам ничего не нашлось — попробуй ослабить пару условий.");return}
     current=toCurrent(f);
     tries--;$("#tries").textContent=tries;render();
-  }finally{$("#pick").disabled=false;$("#pick").classList.remove("loading")}
+  }finally{$("#pick").disabled=false;$("#pick").classList.remove("loading");if(pw)pw.classList.remove("loading")}
+}
+
+function spawnSparks(wrap){
+  const icons=["✨","⭐","🎬","✦"];
+  for(let i=0;i<7;i++){
+    const s=document.createElement("span");s.className="spark";s.textContent=icons[i%icons.length];
+    const angle=(Math.PI*2*i/7)+Math.random()*.5;
+    const dist=70+Math.random()*40;
+    s.style.setProperty("--dx",(Math.cos(angle)*dist)+"px");
+    s.style.setProperty("--dy",(Math.sin(angle)*dist)+"px");
+    s.style.setProperty("--rot",(Math.random()*140-70)+"deg");
+    s.style.animationDelay=(i*0.02)+"s";
+    wrap.appendChild(s);
+    setTimeout(()=>s.remove(),900);
+  }
 }
 
 function render(){
   if(!current)return;
-  const movieEl=document.querySelector(".movie"),posterEl=$("#poster");
-  movieEl.classList.remove("reveal");posterEl.classList.remove("reveal");
+  const movieEl=document.querySelector(".movie"),posterEl=$("#poster"),wrapEl=$("#posterWrap");
+  movieEl.classList.remove("reveal");wrapEl.classList.remove("reveal","burst","loading");
   void movieEl.offsetWidth;
   $("#poster").src=posterFor(current);
   $("#poster").onerror=()=>{$("#poster").onerror=null;$("#poster").src=placeholderFor(current)};
@@ -386,7 +419,8 @@ function render(){
   $("#counter").textContent="ПОДБОР № "+(MAX_TRIES-tries)+" / "+MAX_TRIES;
   $("#save").textContent=saved.some(x=>x.t===current.t)?"♥ СОХРАНЕНО":"♡ СОХРАНИТЬ";
   $("#srcLine").innerHTML=current.source==="tmdb"?'источник: <b>TMDB live</b>':'источник: <b style="color:#999">локальная подборка (добавь TMDB-ключ в ⚙)</b>';
-  movieEl.classList.add("reveal");posterEl.classList.add("reveal");
+  movieEl.classList.add("reveal");wrapEl.classList.add("reveal","burst");
+  spawnSparks(wrapEl);
 
   let cardsHtml="";
   if(current.source==="tmdb"&&current.similar&&current.similar.length){
@@ -401,9 +435,8 @@ function render(){
   $("#cards").innerHTML=cardsHtml;
   document.querySelectorAll(".card").forEach(c=>c.onclick=async()=>{
     if(c.dataset.src==="local"){current=toCurrent(films.find(x=>x.t===decodeURIComponent(c.dataset.t)));render();return}
-    const keyObj=lsGet("rc_tmdbkey");
-    if(!TMDB_PROXY_READY&&(!keyObj||!keyObj.key)){toast("Нужен TMDB-ключ, чтобы открыть этот вариант.");return}
-    try{current=await tmdbDetails(c.dataset.id,c.dataset.mt,TMDB_PROXY_READY?null:keyObj.key);render()}catch(e){toast("Не получилось загрузить карточку из TMDB.")}
+    if(!TMDB_PROXY_READY){toast("TMDB сейчас недоступен.");return}
+    try{current=await tmdbDetails(c.dataset.id,c.dataset.mt,null);render()}catch(e){toast("Не получилось загрузить карточку из TMDB.")}
   });
   updateShare()
 }
@@ -415,6 +448,15 @@ function show(id){
   if(id==="together")updateShare();
   if(id==="requests")loadRequests();
   if(id==="couriers")loadCouriers();
+  if(id==="saved")renderSaved();
+}
+function renderSaved(){
+  const list=$("#savedList"),empty=$("#savedEmpty");
+  if(!saved.length){list.innerHTML="";empty.style.display="block";return}
+  empty.style.display="none";
+  list.innerHTML=saved.map((x,i)=>'<div class="card" style="position:relative"><button data-openidx="'+i+'" style="all:unset;cursor:pointer;display:block"><img src="'+posterFor(x)+'" onerror="this.onerror=null;this.src=\''+placeholderFor(x)+'\'"><div>'+x.t+'<small><span>'+x.y+'</span><b>★ '+x.score+'</b></small></div></button><button data-removeidx="'+i+'" style="position:absolute;top:5px;right:5px;width:22px;height:22px;border-radius:50%;background:#000000cc;border:1px solid #333;color:#eee;font-size:11px;line-height:1;padding:0">×</button></div>').join("");
+  list.querySelectorAll("[data-openidx]").forEach(b=>b.onclick=()=>{current=saved[+b.dataset.openidx];show("home");render()});
+  list.querySelectorAll("[data-removeidx]").forEach(b=>b.onclick=(e)=>{e.stopPropagation();saved.splice(+b.dataset.removeidx,1);localStorage.setItem("rcSaved",JSON.stringify(saved));syncSavedToCloud();renderSaved()});
 }
 document.querySelectorAll("[data-nav]").forEach(x=>x.onclick=()=>show(x.dataset.nav));
 $("#gearBtn").onclick=()=>show("settings");
@@ -422,43 +464,62 @@ $("#gearBtn").onclick=()=>show("settings");
 document.querySelectorAll("#types .choice").forEach(x=>x.onclick=()=>{document.querySelectorAll("#types .choice").forEach(y=>y.classList.remove("active"));x.classList.add("active");type=x.dataset.v});
 document.querySelectorAll("#moods .mood").forEach(x=>x.onclick=()=>{document.querySelectorAll("#moods .mood").forEach(y=>y.classList.remove("active"));x.classList.add("active");mood=x.dataset.v});
 $("#pick").onclick=pick;$("#again").onclick=pick;$("#togetherBtn").onclick=()=>show("together");
-$("#save").onclick=()=>{if(!current)return;if(saved.some(x=>x.t===current.t))saved=saved.filter(x=>x.t!==current.t);else saved.push(current);localStorage.setItem("rcSaved",JSON.stringify(saved));render()};
+$("#save").onclick=()=>{if(!current)return;if(saved.some(x=>x.t===current.t))saved=saved.filter(x=>x.t!==current.t);else saved.push(current);localStorage.setItem("rcSaved",JSON.stringify(saved));syncSavedToCloud();render()};
 
-function updateShare(){if(!current)return;const r=current.ratings.map(x=>x.name+" "+x.value).join(" · ");$("#shareBox").innerHTML='<div class="share"><img src="'+posterFor(current)+'"><div><div class="label">'+current.type+"</div><h3>"+current.t+'</h3><p>'+current.y+" · "+r+'</p><p>«'+current.t+'»? Посмотрим вместе сегодня? 🎬</p></div></div>'}
-$("#shareBtn").onclick=()=>{if(!current)return;const r=current.ratings.map(x=>x.name+" "+x.value).join(" · ");let text="🎬 Давай посмотрим «"+current.t+"» ("+current.y+")? "+r+".";window.open("https://t.me/share/url?url="+encodeURIComponent("https://t.me/roomcinema5")+"&text="+encodeURIComponent(text),"_blank")};
+function shareUrlFor(c){
+  if(c.source==="tmdb"&&c.id&&c.mt)return "https://www.themoviedb.org/"+c.mt+"/"+c.id+"-"+String(c.t).toLowerCase().replace(/[^a-zа-я0-9]+/gi,"-").replace(/^-+|-+$/g,"");
+  return null;
+}
+function updateShare(){
+  if(!current)return;
+  const r=current.ratings.map(x=>x.name+" "+x.value).join(" · ");
+  const url=shareUrlFor(current);
+  $("#shareBox").innerHTML='<div class="share"><img src="'+posterFor(current)+'"><div><div class="label">'+current.type+"</div><h3>"+current.t+'</h3><p>'+current.y+" · "+r+'</p><p>«'+current.t+'»? Посмотрим вместе сегодня? 🎬</p></div></div>'+(url?'':'<div class="hint">Ссылка на карточку фильма доступна только для вариантов из живого TMDB.</div>');
+}
+$("#shareBtn").onclick=()=>{
+  if(!current)return;
+  const url=shareUrlFor(current);
+  let text="🎬 Давай посмотрим «"+current.t+"» ("+current.y+")?";
+  if(url){window.open("https://t.me/share/url?url="+encodeURIComponent(url)+"&text="+encodeURIComponent(text),"_blank")}
+  else{const r=current.ratings.map(x=>x.name+" "+x.value).join(" · ");window.open("https://t.me/share/url?url="+encodeURIComponent("https://t.me/roomcinema5")+"&text="+encodeURIComponent(text+" "+r),"_blank")}
+};
 $("#makeLetter").onclick=()=>{if(!current){toast("Сначала подбери фильм на главном экране.");return}let n=$("#friend").value||"тебе",m=$("#msg").value||"Мне кажется, тебе сегодня зайдёт именно это кино.";const r=current.ratings.map(x=>x.name+" "+x.value).join(" · ");$("#letterOut").innerHTML='<div class="why"><strong>✉ КИНОПИСЬМО ДЛЯ '+n.toUpperCase()+"</strong>"+m+"<br><br>🎬 <b>"+current.t+"</b> · "+r+"</div>"};
 
-/* ---------- settings: profile / TMDB key / Firebase config ---------- */
-$("#saveMe").onclick=()=>{
-  const name=$("#meName").value.trim();
-  if(!name){toast("Введи имя.");return}
-  me={name};
-  lsSet("rc_me",me);
-  toast("Готово, "+name+" — теперь твои заявки и советы подписаны этим именем.");
-};
-function loadKeyStatus(){
-  if(TMDB_PROXY_READY){$("#keyStatus").textContent="Общий прокси подключён (TMDB_PROXY в коде) — этот ключ ниже не используется, можно оставить пустым.";return}
-  const k=lsGet("rc_tmdbkey");
-  if(k&&k.key){$("#tmdbKey").value=k.key;$("#keyStatus").textContent="Прокси не настроен. Личный ключ сохранён — подбор идёт из живого каталога TMDB напрямую (когда файл открыт на своём хостинге)."}
-  else{$("#keyStatus").textContent="Ни прокси, ни личного ключа нет — используется встроенная подборка из 66 фильмов."}
+/* ---------- settings: profile (ник = простой вход, без пароля) ---------- */
+function sameName(a,b){return String(a||"").trim()===String(b||"").trim()}
+async function syncSavedToCloud(){
+  if(!(me&&me.name))return;
+  const db=getDb();if(!db)return;
+  try{await db.collection("profiles").doc(me.name).set({name:me.name,savedList:saved,updatedAt:Date.now()},{merge:true})}catch(e){}
 }
-$("#saveKey").onclick=()=>{
-  const key=$("#tmdbKey").value.trim();
-  lsSet("rc_tmdbkey",{key});
-  toast(key?"Ключ TMDB сохранён.":"Ключ очищен.");
-  loadKeyStatus();
-};
-function loadFbStatus(){
-  const cfg=lsGet("rc_fbconfig");
-  if(cfg){$("#fbConfig").value=JSON.stringify(cfg,null,2);const db=getDb();$("#fbStatus").textContent=db?"Firebase подключён — Заявки и Курьеры общие для всех.":"Конфиг сохранён, но Firebase SDK недоступен (загрузится только на настоящем хостинге).";updateReqSub()}
-  else{$("#fbStatus").textContent="Firebase не настроен — Заявки/Курьеры видны только в этом браузере.";updateReqSub()}
+function loadMeStatus(){
+  $("#meStatus").textContent=fbConfigured()?"Ник и «Сохранённое» синхронизируются между устройствами.":"Сейчас сохраняется только в этом браузере — общая синхронизация ещё не подключена.";
 }
 function updateReqSub(){$("#reqSub").textContent=fbConfigured()?"Заявки видны всем, кто открывает это приложение (Firebase).":"Firebase не подключён — заявки видны только тебе, в этом браузере."}
-$("#saveFb").onclick=()=>{
-  const raw=$("#fbConfig").value.trim();
-  if(!raw){lsSet("rc_fbconfig",null);toast("Конфиг очищен.");_db=undefined;loadFbStatus();return}
-  try{const cfg=JSON.parse(raw);lsSet("rc_fbconfig",cfg);_db=undefined;toast("Конфиг Firebase сохранён.");loadFbStatus()}
-  catch(e){toast("Это не похоже на корректный JSON — скопируй объект firebaseConfig целиком.")}
+$("#saveMe").onclick=async()=>{
+  const name=$("#meName").value.trim();
+  if(!name){toast("Введи ник.");return}
+  const changingProfile=!sameName(me&&me.name,name);
+  me={name};
+  lsSet("rc_me",me);
+  const db=getDb();
+  if(db&&changingProfile){
+    try{
+      const doc=await db.collection("profiles").doc(name).get();
+      if(doc.exists){
+        const data=doc.data();
+        saved=data.savedList||[];
+        localStorage.setItem("rcSaved",JSON.stringify(saved));
+        toast("С возвращением, "+name+"! Подтянули твоё «Сохранённое».");
+      }else{
+        await db.collection("profiles").doc(name).set({name,savedList:saved,updatedAt:Date.now()});
+        toast("Готово, "+name+" — профиль создан.");
+      }
+      if($("#saved").classList.contains("active"))renderSaved();
+    }catch(e){toast("Ник сохранён локально, но не получилось связаться с базой.")}
+  }else{
+    toast(db?"Готово, "+name+".":"Готово, "+name+" — но пока это работает только в этом браузере.");
+  }
 };
 
 /* ---------- requests: Firestore if configured, else per-browser localStorage ---------- */
@@ -557,8 +618,7 @@ async function loadCouriers(){
 /* ---------- init ---------- */
 buildFilterOptions();
 loadMe();
-loadKeyStatus();
-loadFbStatus();
+loadMeStatus();
 pick();
 </script>
 </body></html>
